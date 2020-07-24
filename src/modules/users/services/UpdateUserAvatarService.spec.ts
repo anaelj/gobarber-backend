@@ -4,15 +4,22 @@ import FakeStorageProvider from '@shared/container/providers/StorageProvider/fak
 import UpdateUserAvatarService from './UpdateUserAvatarService';
 import FakeUsersRespository from '../repositories/fakes/FakeUsersRepository';
 
-describe('UpdateUserAvatar', () => {
-  it('should be able to update avatar', async () => {
-    const fakeUserRespository = new FakeUsersRespository();
-    const fakeStorageProvider = new FakeStorageProvider();
+let fakeUserRespository: FakeUsersRespository;
+let fakeStorageProvider: FakeStorageProvider;
+let updateUserAvatar: UpdateUserAvatarService;
 
-    const updateUserAvatar = new UpdateUserAvatarService(
+describe('UpdateUserAvatar', () => {
+
+  beforeEach(() => {
+    fakeUserRespository = new FakeUsersRespository();
+    fakeStorageProvider = new FakeStorageProvider();
+  
+    updateUserAvatar = new UpdateUserAvatarService(
       fakeUserRespository,
       fakeStorageProvider,
     );
+  })
+  it('should be able to update avatar', async () => {
 
     const user = await fakeUserRespository.create({
       name: 'John Doe',
@@ -28,14 +35,7 @@ describe('UpdateUserAvatar', () => {
     expect(user.avatar).toBe('teste.jpg');
   });
   it('should delete old avatar when updating new one', async () => {
-    const fakeUserRespository = new FakeUsersRespository();
-    const fakeStorageProvider = new FakeStorageProvider();
     const deleteFile = jest.spyOn(fakeStorageProvider, 'deleteFile');
-
-    const updateUserAvatar = new UpdateUserAvatarService(
-      fakeUserRespository,
-      fakeStorageProvider,
-    );
 
     const user = await fakeUserRespository.create({
       name: 'John Doe',
@@ -58,15 +58,7 @@ describe('UpdateUserAvatar', () => {
   });
 
   it('should not be able to update avatar from non existing user', async () => {
-    const fakeUserRespository = new FakeUsersRespository();
-    const fakeStorageProvider = new FakeStorageProvider();
-
-    const updateUserAvatar = new UpdateUserAvatarService(
-      fakeUserRespository,
-      fakeStorageProvider,
-    );
-
-    await expect(
+      await expect(
       updateUserAvatar.execute({
         user_id: 'non-existing-user',
         avatarFilename: 'teste.jpg',
