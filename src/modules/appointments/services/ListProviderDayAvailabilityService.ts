@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { getHours, isAfter } from 'date-fns';
+import { compare } from 'bcryptjs';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 interface IRequest {
@@ -42,6 +43,7 @@ class ListProviderDayAvailabilityService {
       { length: 10 },
       (_, index) => index + hourStart,
     );
+
     const currentDate = new Date(Date.now());
 
     const availability = eachHourArray.map(hour => {
