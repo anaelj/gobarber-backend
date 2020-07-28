@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 import { getHours, isAfter } from 'date-fns';
-import { compare } from 'bcryptjs';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 interface IRequest {
