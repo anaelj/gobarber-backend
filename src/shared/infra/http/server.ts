@@ -3,6 +3,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import AppError from '@shared/errors/AppError';
 import cors from 'cors';
+import {errors } from 'celebrate';
 import '@shared/infra/typeorm';
 import '@shared/container';
 import uploadConfig from '@config/upload';
@@ -18,6 +19,8 @@ app.use('/files', express.static(uploadConfig.uploadsFolder));
 
 app.use(routes);
 
+app.use(errors());
+
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {
@@ -26,9 +29,12 @@ app.use(
         message: err.message,
       });
     }
+
+    console.error(err)
+
     return response.status(500).json({
       status: 'error',
-      message: err.message, // 'Internal server error',
+      message: 'Internal server error',
     });
   },
 );
