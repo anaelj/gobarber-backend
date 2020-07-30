@@ -1,9 +1,10 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import AppError from '@shared/errors/AppError';
 import cors from 'cors';
-import {errors } from 'celebrate';
+import { errors } from 'celebrate';
 import '@shared/infra/typeorm';
 import '@shared/container';
 import uploadConfig from '@config/upload';
@@ -30,7 +31,7 @@ app.use(
       });
     }
 
-    console.error(err)
+    console.error(err);
 
     return response.status(500).json({
       status: 'error',

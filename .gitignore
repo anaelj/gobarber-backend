@@ -1,7 +1,9 @@
 node_modules
 coverage
 .idea/
+.env
 .vscode/
 build/
 tmp/*
 !tmp/.gitkeep
+ormconfig.json

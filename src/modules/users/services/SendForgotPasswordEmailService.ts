@@ -1,9 +1,9 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
+import path from 'path';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IUserTokensRepository from '../repositories/IUserTokensRepository';
-import path from 'path';
 
 interface IRequest {
   email: string;
@@ -30,7 +30,12 @@ class SendForgotPasswordEmailService {
 
     const { token } = await this.userTokensRepository.generate(user.id);
 
-    const forgotPasswordsTemplate = path.resolve(__dirname, '..','views','forgot_password.hbs');
+    const forgotPasswordsTemplate = path.resolve(
+      __dirname,
+      '..',
+      'views',
+      'forgot_password.hbs',
+    );
 
     await this.mailProvider.sendMail({
       to: {
@@ -42,7 +47,7 @@ class SendForgotPasswordEmailService {
         file: forgotPasswordsTemplate,
         variables: {
           name: user.name,
-          link: `http://localhost:3000/reset_password?token=${token}`
+          link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
         },
       },
     });
