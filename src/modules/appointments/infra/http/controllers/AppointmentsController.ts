@@ -7,7 +7,7 @@ export default class AppointmentsController {
     const { provider_id, date } = request.body;
     const user_id = request.user.id;
 
-    console.log(date);
+    //    console.log(date);
 
     //    const parsedDate = parseISO(date);
     //    const parsedDate = format(date, 'yyyy-MM-dd HH:mm');
