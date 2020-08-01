@@ -41,7 +41,6 @@ class ListProviderAppointmentService {
           month,
         },
       );
-      console.log('consultou agendamento no banco');
     }
 
     await this.cacheProvider.save(cacheKey, appointments);
