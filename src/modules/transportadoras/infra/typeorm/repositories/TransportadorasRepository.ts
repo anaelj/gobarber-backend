@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Like, Not, Or } from 'typeorm';
 import ITransportadorasRepository from '@modules/transportadoras/repositories/ITransportadorasRepository';
 import ICreateTransportadoraDTO from '@modules/transportadoras/dtos/ICreateTransportadoraDTO';
 import Transportadora from '../entities/Transportadora';
@@ -18,6 +18,21 @@ class TransportadorasRepository implements ITransportadorasRepository {
   public async findByEmail(email: string): Promise<Transportadora | undefined> {
     const transportadora = await this.ormRepository.findOne({
       where: { email },
+    });
+    return transportadora;
+  }
+
+  public async findAll(
+    id_except: string,
+    name?: string,
+    email?: string,
+  ): Promise<Transportadora | undefined> {
+    const transportadora = await this.ormRepository.findOne({
+      where: [
+        { id: Not(id_except) },
+        [{ name: Or(Like(name)) }, { email: Or(Like(email)) }],
+      ],
+      //      where: { id: Not(id_except), [{name: Or(Like(name))}, {email: Or(Like(email))} ] },
     });
     return transportadora;
   }

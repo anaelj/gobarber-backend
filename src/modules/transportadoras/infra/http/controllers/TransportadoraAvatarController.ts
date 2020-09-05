@@ -1,18 +1,17 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import UpdateTranspotadoraAvatarService from '@modules/transpotadoras/services/UpdateTranspotadoraAvatarService';
+import UpdateTransportadoraAvatarService from '@modules/transportadoras/services/UpdateTransportadoraAvatarService';
 import { classToClass } from 'class-transformer';
 
-export default class transpotadoraAvatarController {
+export default class transportadoraAvatarController {
   public async update(request: Request, response: Response): Promise<Response> {
-    const updateTranspotadoraAvatarService = container.resolve(
-      UpdateTranspotadoraAvatarService,
+    const updateTransportadoraAvatarService = container.resolve(
+      UpdateTransportadoraAvatarService,
     );
-    const transpotadora = await updateTranspotadoraAvatarService.execute({
-      transpotadora_id: request.transpotadora.id,
+    const transportadora = await updateTransportadoraAvatarService.execute({
+      transportadora_id: request.transportadora.id,
       avatarFilename: request.file.filename,
     });
-    delete transpotadora.password;
-    return response.json(classToClass(transpotadora));
+    return response.json(classToClass(transportadora));
   }
 }

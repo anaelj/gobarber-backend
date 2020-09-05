@@ -17,8 +17,8 @@ transportadorasRouter.post(
     [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
-      telefone: Joi.string().email().required(),
-      contato: Joi.string().email().required(),
+      telefone: Joi.string().required(),
+      contato: Joi.string().required(),
     },
   }),
   transportadorasController.create,

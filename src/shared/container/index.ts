@@ -6,6 +6,9 @@ import './providers';
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 
+import ITransportadorasRepository from '@modules/transportadoras/repositories/ITransportadorasRepository';
+import TransportadorasRepository from '@modules/transportadoras/infra/typeorm/repositories/TransportadorasRepository';
+
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
@@ -14,6 +17,11 @@ import UserTokensRepository from '@modules/users/infra/typeorm/repositories/User
 
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRespository';
+
+container.registerSingleton<ITransportadorasRepository>(
+  'TransportadorasRepository',
+  TransportadorasRepository,
+);
 
 container.registerSingleton<IAppointmentsRepository>(
   'AppointmentsRepository',

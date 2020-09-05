@@ -4,11 +4,14 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import uploadConfig from '@config/upload';
 
 import { Exclude, Expose } from 'class-transformer';
+import Transportadora from '@modules/transportadoras/infra/typeorm/entities/Transportadora';
 
 @Entity('users')
 class User {
@@ -20,6 +23,13 @@ class User {
 
   @Column()
   email: string;
+
+  @Column()
+  transportadora_id: string;
+
+  @ManyToOne(() => Transportadora)
+  @JoinColumn({ name: 'transportadora_id' })
+  transportadora: Transportadora;
 
   @Column()
   @Exclude()
