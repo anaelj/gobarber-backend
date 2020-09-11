@@ -22,20 +22,29 @@ class TransportadorasRepository implements ITransportadorasRepository {
     return transportadora;
   }
 
-  public async findAll(
+  public async findAllTransportadoras(
     id_except: string,
-    name?: string,
-    email?: string,
-  ): Promise<Transportadora | undefined> {
-    const transportadora = await this.ormRepository.findOne({
-      where: [
-        { id: Not(id_except) },
-        [{ name: Or(Like(name)) }, { email: Or(Like(email)) }],
-      ],
+  ): Promise<Transportadora[]> {
+    const transportadora = await this.ormRepository.find({
+      where: { id: Not(id_except) },
       //      where: { id: Not(id_except), [{name: Or(Like(name))}, {email: Or(Like(email))} ] },
     });
     return transportadora;
   }
+  // public async findAll(
+  //   id_except: string,
+  //   name?: string,
+  //   email?: string,
+  // ): Promise<Transportadora | undefined> {
+  //   const transportadora = await this.ormRepository.findOne({
+  //     where: [
+  //       { id: Not(id_except) },
+  //       [{ name: Or(Like(name)) }, { email: Or(Like(email)) }],
+  //     ],
+  //     //      where: { id: Not(id_except), [{name: Or(Like(name))}, {email: Or(Like(email))} ] },
+  //   });
+  //   return transportadora;
+  // }
 
   public async create(
     transportadoraData: ICreateTransportadoraDTO,

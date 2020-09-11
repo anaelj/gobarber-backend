@@ -3,13 +3,15 @@ import multer from 'multer';
 import uploadConfig from '@config/upload';
 import { celebrate, Segments, Joi } from 'celebrate';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
-import TransportadorasController from '../controllers/TransportadorasController';
 import TransportadoraAvatarController from '../controllers/TransportadoraAvatarController';
+import TransportadorasController from '../controllers/TransportadorasController';
+import ProviderListTransportadorasController from '../controllers/ProviderListTransportadorasController';
 
 const transportadorasRouter = Router();
 const upload = multer(uploadConfig.multer);
 const transportadorasController = new TransportadorasController();
 const transportadoraAvatarController = new TransportadoraAvatarController();
+const providerListTransportadorasController = new ProviderListTransportadorasController();
 
 transportadorasRouter.post(
   '/',
@@ -22,6 +24,16 @@ transportadorasRouter.post(
     },
   }),
   transportadorasController.create,
+);
+
+transportadorasRouter.get(
+  '/:transportadora_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      transportadora_id: Joi.string().uuid().required(),
+    },
+  }),
+  providerListTransportadorasController.index,
 );
 
 transportadorasRouter.patch(
