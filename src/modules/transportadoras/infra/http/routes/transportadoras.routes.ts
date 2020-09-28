@@ -36,6 +36,16 @@ transportadorasRouter.get(
   providerListTransportadorasController.index,
 );
 
+transportadorasRouter.get(
+  '/show/:transportadora_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      transportadora_id: Joi.string().uuid().required(),
+    },
+  }),
+  providerListTransportadorasController.show,
+);
+
 transportadorasRouter.patch(
   '/avatar',
   ensureAuthenticated,
