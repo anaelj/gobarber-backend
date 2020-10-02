@@ -48,7 +48,7 @@ transportadorasRouter.get(
 
 transportadorasRouter.patch(
   '/avatar',
-  ensureAuthenticated,
+//  ensureAuthenticated,
   upload.single('avatar'),
   transportadoraAvatarController.update,
 );

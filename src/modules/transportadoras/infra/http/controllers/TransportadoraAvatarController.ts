@@ -5,13 +5,16 @@ import { classToClass } from 'class-transformer';
 
 export default class transportadoraAvatarController {
   public async update(request: Request, response: Response): Promise<Response> {
+  //  console.log(request)
+
     const updateTransportadoraAvatarService = container.resolve(
       UpdateTransportadoraAvatarService,
     );
     const transportadora = await updateTransportadoraAvatarService.execute({
-      transportadora_id: request.transportadora.id,
+      transportadora_id: request.id,
       avatarFilename: request.file.filename,
     });
+
     return response.json(classToClass(transportadora));
   }
 }

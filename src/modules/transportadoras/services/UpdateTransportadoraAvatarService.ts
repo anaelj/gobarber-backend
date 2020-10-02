@@ -13,7 +13,7 @@ interface IRequest {
 @injectable()
 class UpdateTransportadoraAvatarService {
   constructor(
-    @inject('transportadorasRepository')
+    @inject('TransportadorasRepository')
     private transportadorasRepository: ITransportadorasRepository,
 
     @inject('StorageProvider')
