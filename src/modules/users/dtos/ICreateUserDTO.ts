@@ -3,4 +3,7 @@ export default interface ICreateUserDTO {
   email: string;
   password: string;
   transportadora_id?: string;
+  admin_flex: string;
+  admin_transportadora: string;
+  cpf : string ;
 }

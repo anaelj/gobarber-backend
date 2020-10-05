@@ -24,6 +24,19 @@ usersRouter.post(
   usersController.create,
 );
 
+usersRouter.get(
+  '/:user_id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      transportadora_id: Joi.string(),
+    },
+  }),
+  usersController.index,
+);
+
 usersRouter.patch(
   '/avatar',
   ensureAuthenticated,

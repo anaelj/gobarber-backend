@@ -38,6 +38,15 @@ class User {
   @Column()
   avatar: string;
 
+  @Column()
+  admin_flex: string;
+
+  @Column()
+  admin_transportadora: string;
+
+  @Column()
+  cpf: string;
+
   @CreateDateColumn()
   created_at: Date;
 

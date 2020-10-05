@@ -10,6 +10,9 @@ interface IRequest {
   email: string;
   old_password?: string;
   password?: string;
+  admin_flex: string;
+  admin_transportadora: string;
+  cpf: string;  
 }
 
 @injectable()
@@ -28,6 +31,9 @@ class UpdateProfileService {
     email,
     password,
     old_password,
+    admin_flex,
+    admin_transportadora,
+    cpf
   }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
@@ -43,6 +49,9 @@ class UpdateProfileService {
 
     user.name = name;
     user.email = email;
+    user.admin_flex = admin_flex;
+    user.admin_transportadora = admin_transportadora;
+    user.cpf = cpf;
 
     if (password && !old_password) {
       throw new AppError(

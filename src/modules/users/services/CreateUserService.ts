@@ -10,6 +10,10 @@ interface IRequest {
   email: string;
   password: string;
   transportadora_id?: string;
+  admin_flex: string;
+  admin_transportadora: string;
+  cpf: string;
+
 }
 @injectable()
 class CreateUserService {
@@ -29,6 +33,9 @@ class CreateUserService {
     email,
     password,
     transportadora_id,
+    admin_flex,
+    admin_transportadora,
+    cpf
   }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
@@ -43,6 +50,9 @@ class CreateUserService {
       email,
       password: hashPassword,
       transportadora_id,
+      admin_flex,
+      admin_transportadora,
+      cpf
     });
 
     await this.cacheProvider.invalidadePrefix('providers-list');

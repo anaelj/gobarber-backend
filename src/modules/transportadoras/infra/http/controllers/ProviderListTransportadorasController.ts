@@ -11,6 +11,7 @@ export default class ProviderListTransportadorasController {
 
     //    console.log(transportadora_id);
 
+    
     const listTransportadoraService = container.resolve(
       ListTransportadoraService,
     );
