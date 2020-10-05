@@ -26,6 +26,19 @@ transportadorasRouter.post(
   transportadorasController.create,
 );
 
+transportadorasRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      telefone: Joi.string().required(),
+      contato: Joi.string().required(),
+    },
+  }),
+  transportadorasController.update,
+);
+
 transportadorasRouter.get(
   '/:transportadora_id',
   celebrate({
@@ -47,8 +60,8 @@ transportadorasRouter.get(
 );
 
 transportadorasRouter.patch(
-  '/avatar',
-//  ensureAuthenticated,
+  '/avatar/:id',
+  //  ensureAuthenticated,
   upload.single('avatar'),
   transportadoraAvatarController.update,
 );
