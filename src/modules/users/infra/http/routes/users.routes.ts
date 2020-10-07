@@ -24,6 +24,8 @@ usersRouter.post(
   usersController.create,
 );
 
+usersRouter.get('/show/:user_id', usersController.show);
+
 usersRouter.get(
   '/:user_id',
   celebrate({
