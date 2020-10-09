@@ -10,6 +10,7 @@ interface IRequest {
   email: string;
   old_password?: string;
   password?: string;
+  transportadora_id: string;
   admin_flex: string;
   admin_transportadora: string;
   cpf: string;  
@@ -31,11 +32,14 @@ class UpdateProfileService {
     email,
     password,
     old_password,
+    transportadora_id,
     admin_flex,
     admin_transportadora,
     cpf
   }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
+
+//    console.log(user_id);
 
     if (!user) {
       throw new AppError('User not found');
@@ -50,15 +54,16 @@ class UpdateProfileService {
     user.name = name;
     user.email = email;
     user.admin_flex = admin_flex;
+    user.transportadora_id = transportadora_id;
     user.admin_transportadora = admin_transportadora;
     user.cpf = cpf;
 
-    if (password && !old_password) {
+/*    if (password && !old_password) {
       throw new AppError(
         'You need to inform the old password to set a new password',
       );
     }
-
+*/
     if (password && old_password) {
       const checkOldPassword = await this.hashProvider.compareHash(
         old_password,

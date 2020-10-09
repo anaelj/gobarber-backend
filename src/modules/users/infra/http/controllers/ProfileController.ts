@@ -6,8 +6,11 @@ import { classToClass } from 'class-transformer';
 
 export default class ProfileController {
   public async update(request: Request, response: Response): Promise<Response> {
-    const user_id = request.user.id;
-    const { name, email, old_password, password } = request.body;
+    const user_id = request.params.user_id;
+
+//    console.log(user_id);
+
+    const { name, email, old_password, password, transportadora_id, admin_flex, admin_transportadora, cpf } = request.body;
 
     const updateProfile = container.resolve(UpdateProfileService);
 
@@ -17,6 +20,10 @@ export default class ProfileController {
       email,
       old_password,
       password,
+      transportadora_id, 
+      admin_flex, 
+      admin_transportadora, 
+      cpf
     });
 
     delete user.password;
