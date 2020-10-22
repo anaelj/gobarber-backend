@@ -8,6 +8,8 @@ export default class TransportadorasController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, email, telefone, contato } = request.body;
 
+//    console.log(request.body);
+
     const createTransportadora = container.resolve(CreateTransportadoraService);
 
     const transportadora = await createTransportadora.execute({
