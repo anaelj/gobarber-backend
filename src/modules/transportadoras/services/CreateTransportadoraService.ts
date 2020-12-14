@@ -20,7 +20,6 @@ class CreateTransportadoraService {
     private cacheProvider: ICacheProvider,
   ) {}
 
-  
   public async execute({
     name,
     email,
