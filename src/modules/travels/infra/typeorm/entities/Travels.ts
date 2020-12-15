@@ -33,6 +33,9 @@ class Travel {
   placa: string;
 
   @Column()
+  transportadora_id: string;
+
+  @Column()
   cpfmotorista: string;
 
   @ManyToOne(() => Transportadora)

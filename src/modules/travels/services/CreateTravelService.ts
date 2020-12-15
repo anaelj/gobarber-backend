@@ -36,7 +36,7 @@ class CreateTravelService {
     cpfmotorista,
     transportadora_id,
   }: IRequest): Promise<Travel> {
-    const checkTravelExists = await this.travelsRepository.findAllTravelByCte({
+    const checkTravelExists = await this.travelsRepository.findTravelByCte({
       cte,
       transportadora_id,
     });

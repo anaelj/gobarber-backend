@@ -14,7 +14,7 @@ interface IRequest {
 class CreateTransportadoraService {
   constructor(
     @inject('TransportadorasRepository')
-    private TransportadorasRepository: ITransportadorasRepository,
+    private transportadorasRepository: ITransportadorasRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
@@ -26,7 +26,7 @@ class CreateTransportadoraService {
     telefone,
     contato,
   }: IRequest): Promise<Transportadora> {
-    const checkTransportadoraExists = await this.TransportadorasRepository.findByEmail(
+    const checkTransportadoraExists = await this.transportadorasRepository.findByEmail(
       email,
     );
 
@@ -34,7 +34,7 @@ class CreateTransportadoraService {
       throw new AppError('Email address already used.');
     }
 
-    const transportadora = await this.TransportadorasRepository.create({
+    const transportadora = await this.transportadorasRepository.create({
       name,
       email,
       telefone,

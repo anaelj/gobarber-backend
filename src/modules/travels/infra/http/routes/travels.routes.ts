@@ -1,22 +1,19 @@
 import { Router } from 'express';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
-import { celebrate, Segments, Joi } from 'celebrate';
+// import { celebrate, Segments, Joi } from 'celebrate';
 import TravelController from '../controllers/TravelController';
+import ListTravelController from '../controllers/ListTavelController';
 
 const travelsRouter = Router();
 const travelsController = new TravelController();
-
+const listTravelController = new ListTravelController();
 travelsRouter.use(ensureAuthenticated);
 
-travelsRouter.get('/travels/:cpfmotorista', travelsController.create);
+travelsRouter.get('/:cpfmotorista', listTravelController.index);
 
 travelsRouter.post(
   '/',
-  celebrate({
-    [Segments.BODY]: {
-      transportadora_id: Joi.string().uuid().required(),
-    },
-  }),
+
   travelsController.create,
 );
 

@@ -24,18 +24,18 @@ class ListTravelsService {
     );
 
     if (!travels) {
-       travels = await this.travelsRepository.findAllTravelsFromDriver(
-        cpfmotorista
+      travels = await this.travelsRepository.findAllTravelsFromDriver(
+        cpfmotorista,
       );
 
       await this.cacheProvider.save(
         `travel-list-driver:${cpfmotorista}`,
         classToClass(travels),
       );
-       }
-
-      return travels;
     }
+
+    return travels;
   }
 }
+
 export default ListTravelsService;
