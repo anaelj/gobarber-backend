@@ -12,6 +12,9 @@ import TransportadorasRepository from '@modules/transportadoras/infra/typeorm/re
 import ITravelsRepository from '@modules/travels/repositories/ITravelsRepository';
 import TravelsRepository from '@modules/travels/infra/typeorm/repositories/TravelsRepository';
 
+import IDriversRepository from '@modules/drivers/repositories/IDriversRepository';
+import DriversRepository from '@modules/drivers/infra/typeorm/repositories/DriversRepository';
+
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
@@ -29,6 +32,11 @@ container.registerSingleton<ITransportadorasRepository>(
 container.registerSingleton<ITravelsRepository>(
   'TravelsRepository',
   TravelsRepository,
+);
+
+container.registerSingleton<IDriversRepository>(
+  'DriversRepository',
+  DriversRepository,
 );
 
 container.registerSingleton<IAppointmentsRepository>(

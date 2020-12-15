@@ -7,6 +7,7 @@ import profileRouter from '@modules/users/infra/http/routes/profile.routes';
 import providersRouter from '@modules/appointments/infra/http/routes/providers.routes';
 import transportadorasRouter from '@modules/transportadoras/infra/http/routes/transportadoras.routes';
 import travelsRouter from '@modules/travels/infra/http/routes/travels.routes';
+import driversRouter from '@modules/drivers/infra/http/routes/drivers.routes';
 
 const routes = Router();
 
@@ -18,5 +19,6 @@ routes.use('/password', passwordRouter);
 routes.use('/profile', profileRouter);
 routes.use('/transportadoras', transportadorasRouter);
 routes.use('/travels', travelsRouter);
+routes.use('/drivers', driversRouter);
 
 export default routes;
