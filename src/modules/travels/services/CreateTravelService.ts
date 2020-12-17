@@ -57,7 +57,7 @@ class CreateTravelService {
       transportadora_id,
     });
 
-    //    await this.cacheProvider.invalidadePrefix('Travels-list');
+    await this.cacheProvider.invalidadePrefix('travel-list-drivert');
 
     return travel;
   }
