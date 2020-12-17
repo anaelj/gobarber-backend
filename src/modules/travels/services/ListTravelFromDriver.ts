@@ -19,20 +19,20 @@ class ListTravelsService {
   ) {}
 
   public async execute({ cpfmotorista }: IRequest): Promise<Travel[]> {
-    let travels = await this.cacheProvider.recover<Travel[]>(
-      `travel-list-driver:${cpfmotorista}`,
+    // let travels = await this.cacheProvider.recover<Travel[]>(
+    //   `travel-list-driver:${cpfmotorista}`,
+    // );
+
+    // if (!travels) {
+    const travels = await this.travelsRepository.findAllTravelsFromDriver(
+      cpfmotorista,
     );
 
-    if (!travels) {
-      travels = await this.travelsRepository.findAllTravelsFromDriver(
-        cpfmotorista,
-      );
-
-      await this.cacheProvider.save(
-        `travel-list-driver:${cpfmotorista}`,
-        classToClass(travels),
-      );
-    }
+    //   await this.cacheProvider.save(
+    //     `travel-list-driver:${cpfmotorista}`,
+    //     classToClass(travels),
+    //   );
+    // }
 
     return travels;
   }
