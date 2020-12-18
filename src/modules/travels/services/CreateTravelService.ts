@@ -36,10 +36,12 @@ class CreateTravelService {
     cpfmotorista,
     transportadora_id,
   }: IRequest): Promise<Travel> {
-    const checkTravelExists = await this.travelsRepository.findTravelByCte({
-      cte,
-      transportadora_id,
-    });
+    const checkTravelExists = await this.travelsRepository.findTravelByNumeroViagem(
+      {
+        numeroviagem,
+        transportadora_id,
+      },
+    );
 
     if (checkTravelExists) {
       throw new AppError('Travel already exists.');
