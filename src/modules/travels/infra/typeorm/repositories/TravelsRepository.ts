@@ -41,6 +41,8 @@ class TravelsRepository implements ITravelsRepository {
       where: {
         cpfmotorista,
       },
+      take: 100,
+      order: { data: 'DESC' },
     });
 
     return travel;

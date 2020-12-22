@@ -26,6 +26,7 @@ class DriversRepository implements IDriversRepository {
 
     const driver = await this.ormRepository.find({
       where: [{ name: Like(`%${name}%`) }, { cpf }],
+      take: 100,
       order: { name: 'ASC' },
     });
 
