@@ -38,6 +38,7 @@ class TravelsRepository implements ITravelsRepository {
     cpfmotorista: string,
   ): Promise<Travel[]> {
     const travel = await this.ormRepository.find({
+      relations: ['transportadora'],
       where: {
         cpfmotorista,
       },

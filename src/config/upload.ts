@@ -41,7 +41,7 @@ export default {
   },
   config: {
     aws: {
-      bucket: 'app-gobarber',
+      bucket: 'app-flexconsulta',
     },
   },
 } as IUploadConfig;
