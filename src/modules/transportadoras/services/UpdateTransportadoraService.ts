@@ -9,6 +9,7 @@ interface IRequest {
   email: string;
   telefone: string;
   contato: string;
+  status: string;
 }
 
 @injectable()
@@ -24,6 +25,7 @@ class UpdateTransportadoraService {
     email,
     telefone,
     contato,
+    status,
   }: IRequest): Promise<Transportadora> {
     const transportadora = await this.transportadorasRepository.findById(
       transportadora_id,
@@ -48,6 +50,7 @@ class UpdateTransportadoraService {
     transportadora.email = email;
     transportadora.telefone = telefone;
     transportadora.contato = contato;
+    transportadora.status = status;
     return this.transportadorasRepository.save(transportadora);
   }
 }

@@ -4,4 +4,5 @@ export default interface ICreateTransportadoraDTO {
   telefone: string;
   contato: string;
   avatar?: string;
+  status: string;
 }

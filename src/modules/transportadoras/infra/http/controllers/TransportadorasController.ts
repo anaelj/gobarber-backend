@@ -6,9 +6,9 @@ import { classToClass } from 'class-transformer';
 
 export default class TransportadorasController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, email, telefone, contato } = request.body;
+    const { name, email, telefone, contato, status } = request.body;
 
-//    console.log(request.body);
+    //    console.log(request.body);
 
     const createTransportadora = container.resolve(CreateTransportadoraService);
 
@@ -17,6 +17,7 @@ export default class TransportadorasController {
       email,
       telefone,
       contato,
+      status,
     });
 
     return response.json(classToClass(transportadora));
@@ -25,7 +26,7 @@ export default class TransportadorasController {
   public async update(request: Request, response: Response): Promise<Response> {
     //    console.log(request.params);
 
-    const { name, email, telefone, contato } = request.body;
+    const { name, email, telefone, contato, status } = request.body;
 
     const updateTransportadora = container.resolve(UpdateTransportadoraService);
 
@@ -35,6 +36,7 @@ export default class TransportadorasController {
       email,
       telefone,
       contato,
+      status,
     });
 
     return response.json(classToClass(transportadora));

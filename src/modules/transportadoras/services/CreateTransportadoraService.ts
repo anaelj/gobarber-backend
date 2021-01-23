@@ -9,6 +9,7 @@ interface IRequest {
   email: string;
   telefone: string;
   contato: string;
+  status: string;
 }
 @injectable()
 class CreateTransportadoraService {
@@ -25,6 +26,7 @@ class CreateTransportadoraService {
     email,
     telefone,
     contato,
+    status,
   }: IRequest): Promise<Transportadora> {
     const checkTransportadoraExists = await this.transportadorasRepository.findByEmail(
       email,
@@ -39,6 +41,7 @@ class CreateTransportadoraService {
       email,
       telefone,
       contato,
+      status,
     });
 
     await this.cacheProvider.invalidadePrefix('transportadoras-list');

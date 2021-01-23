@@ -2,7 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import uploadConfig from '@config/upload';
 import { celebrate, Segments, Joi } from 'celebrate';
-//import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+// import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import TransportadoraAvatarController from '../controllers/TransportadoraAvatarController';
 import TransportadorasController from '../controllers/TransportadorasController';
 import ProviderListTransportadorasController from '../controllers/ProviderListTransportadorasController';
@@ -21,6 +21,7 @@ transportadorasRouter.post(
       email: Joi.string().email().required(),
       telefone: Joi.string().required(),
       contato: Joi.string().required(),
+      status: Joi.string().required(),
     },
   }),
   transportadorasController.create,
@@ -34,6 +35,7 @@ transportadorasRouter.put(
       email: Joi.string().email().required(),
       telefone: Joi.string().required(),
       contato: Joi.string().required(),
+      status: Joi.string().required(),
     },
   }),
   transportadorasController.update,
