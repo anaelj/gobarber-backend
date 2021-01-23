@@ -30,6 +30,9 @@ class Transportadora {
   @Column()
   avatar: string;
 
+  @Column()
+  status: string;
+
   @CreateDateColumn()
   created_at: Date;
 
